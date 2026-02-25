@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chayse Comer | Engineering, Music, and Momentum</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b0d;
+      --card: #16171b;
+      --card-soft: #1e2026;
+      --text: #f4f4f5;
+      --muted: #b2b4bc;
+      --accent: #d71920;
+      --accent-soft: #8d1a1f;
+      --border: #353841;
+      --headline: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .site-header {
+      background: linear-gradient(140deg, #0f1014, #171920 55%, #1f1214);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--accent);
+      border-radius: 16px;
+      padding: 2rem 1.5rem 1.4rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+    }
+
+    .site-title {
+      margin: 0;
+      font-size: clamp(2.1rem, 4vw, 3.3rem);
+      line-height: 1.08;
+      color: var(--headline);
+      letter-spacing: 0.5px;
+    }
+
+    .site-subtitle {
+      margin: 0.55rem 0 1rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: #181a20;
+      border: 1px solid var(--border);
+      color: #ececef;
+    }
+
+    .top-nav a:hover {
+      border-color: var(--accent-soft);
+      background: #24171a;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .content-col {
+      min-width: 0;
+    }
+
+    .side-col {
+      position: sticky;
+      top: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.26);
+    }
+
+    .side-col h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1rem;
+      color: #ffffff;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.26);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .quick-facts {
+      background: #121318;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem;
+    }
+
+    .quick-facts h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      color: #ffffff;
+    }
+
+    .quick-facts ul {
+      margin: 0;
+      padding-left: 1rem;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .photo-card {
+      margin: 0;
+      background: #121318;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      background: #0f1014;
+    }
+
+    .post {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.26);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+      line-height: 1.25;
+    }
+
+    h1 {
+      color: var(--headline);
+      font-size: 2.1rem;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.3px;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .tagline {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(215, 25, 32, 0.18);
+      border: 1px solid var(--accent-soft);
+      color: #ffd9da;
+      margin-bottom: 0.7rem;
+    }
+
+    .highlight {
+      color: #ffd7d9;
+    }
+
+    ul {
+      margin: 0.5rem 0 0 1.2rem;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .span-2 {
+      grid-column: span 2;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 0.5rem 0 1rem;
+    }
+
+    a {
+      color: #ff6a70;
+    }
+
+    @media (max-width: 900px) {
+      .layout,
+      .hero-grid,
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-col {
+        position: static;
+      }
+
+      .span-2 {
+        grid-column: span 1;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="site-header">
+      <h1 class="site-title">Chayse Comer</h1>
+      <p class="site-subtitle">Mechanical Engineering Student • Researcher • Senior Technician • Performer</p>
+      <nav class="top-nav">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#phantom">Drum Corps</a>
+        <a href="#relationship">Relationship</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#future">Future Goals</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+    <div class="content-col">
+
+    <article class="hero">
+      <div class="hero-grid" id="about">
+        <div>
+          <span class="tagline">Engineer. Builder. Performer.</span>
+          <h1>Precision in Motion: My Story Across Engineering and Performance</h1>
+          <p class="subtitle">Mechanical Engineering • Research • Woodshop Specialist • Drum Corps</p>
+          <p>
+            I’m Chayse Comer, a 3rd-year Mechanical Engineering student at the University of Nebraska–Lincoln,
+            and I thrive anywhere grit meets craftsmanship. In class, I study the physics that govern
+            machines and systems; in the shop, I turn concepts into real objects people can hold, test,
+            and improve.
+          </p>
+          <p>
+            I currently work at the Nebraska Engineering Design Hub as a <strong>Senior Technician</strong>
+            with a specialization in the woodshop. I enjoy translating ideas into buildable plans,
+            keeping tools and projects moving, and helping teams transform rough sketches into polished prototypes.
+          </p>
+        </div>
+        <aside class="quick-facts">
+          <h3>Quick Snapshot</h3>
+          <ul>
+            <li>UNL Mechanical Engineering (3rd year)</li>
+            <li>Senior Technician, Nebraska Engineering Design Hub</li>
+            <li>3 research lab experiences</li>
+            <li>Phantom Regiment member since 2024</li>
+            <li>Master’s goal: Nuclear Engineering (computational reactor design)</li>
+          </ul>
+        </aside>
+      </div>
+    </article>
+
+    <section class="section-grid">
+    <section class="post" id="research">
+      <h2>Research That Expanded My Perspective</h2>
+      <p>
+        I have worked in three research labs, each with a very different lens on engineering.
+        Together, they taught me how to think from atomic-scale interactions all the way to full-system behavior:
+      </p>
+      <ul>
+        <li><strong>Nanoscale heat transfer</strong> — exploring thermal energy behavior at extremely small scales, where understanding conduction, radiation, and interfaces becomes critical.</li>
+        <li><strong>Spectroscopic ellipsometry</strong> — an optical thin-film characterization method that analyzes polarization changes in reflected light to estimate material properties.</li>
+        <li><strong>Computational fluid dynamics (CFD)</strong> — numerical simulation of fluid flow and boundary interactions to evaluate performance before expensive physical testing.</li>
+      </ul>
+      <p>
+        Working across these labs sharpened my ability to switch mindsets quickly: precise experimental
+        work when data quality matters most, and large-scale modeling when design decisions depend on simulation.
+        <span class="highlight">That flexibility is one of my strongest advantages as an engineer.</span>
+      </p>
+    </section>
+
+    <section class="post" id="phantom">
+      <h2>Phantom Regiment and the Performance Standard</h2>
+      <p>
+        I am a member of the Phantom Regiment Drum and Bugle Corps.
+        I have participated every summer since 2024, and I am planning to return again in summer 2026.
+      </p>
+      <p>
+        Phantom Regiment is a long-standing Drum Corps International (DCI) World Class organization
+        based in Rockford, Illinois, known for sustained competitive excellence and iconic performances.
+        Being part of that culture has pushed me to raise my standards in rehearsal discipline, consistency,
+        and execution under pressure.
+      </p>
+      <p>
+        Music is one of my biggest passions, and it is a constant part of my day.
+        The same focus I bring to engineering analysis shows up in how I approach rehearsal reps,
+        technique, and ensemble timing.
+      </p>
+    </section>
+
+    <section class="post span-2" id="relationship">
+      <h2>My Relationship</h2>
+      <p>
+        We have known each other for 5.5 years and have been dating for 2.5 years.
+        We were in band together, and one of the coolest parts of our story is that we also do
+        Phantom Regiment together.
+      </p>
+      <p>
+        We love watching shows and movies, playing video games, and cooking together.
+        Recently, we have also started working out together, which has been a great way to stay
+        consistent and support each other’s goals.
+      </p>
+    </section>
+
+    <section class="post span-2" id="hobbies">
+      <h2>What Keeps Me Sharp Outside the Lab</h2>
+      <p>
+        I care about performance in every part of life, not only in coursework and projects.
+        Outside engineering, my hobbies are where I reset, compete with myself, and keep my edge:
+      </p>
+      <ul>
+        <li><strong>Gym training</strong> — I love bench press and I am working toward a 225 lb bench goal by summer. I do abs every day, no excuses.</li>
+        <li><strong>Lower-body work</strong> — I choose leg press over squats because I prefer reducing injury risk while still training hard and consistently.</li>
+        <li><strong>Baking</strong> — banana bread and cakes are two favorites, especially when I can dial in texture and flavor like an experiment.</li>
+        <li><strong>Cooking</strong> — chicken-focused high-protein meal prep, bagel sandwiches, and steak are staples in my routine.</li>
+        <li><strong>Gaming</strong> — I play Minecraft, Rocket League, Overwatch, and Satisfactory as a way to unwind while still enjoying strategy, focus, and competitive energy.</li>
+      </ul>
+      <p>
+        Whether I am chasing strength milestones, perfecting a recipe, or planning a week of high-protein meals,
+        I approach hobbies the same way I approach engineering: show up consistently, track progress, and improve with intent.
+      </p>
+      <p>
+        That blend of discipline and creativity is a big part of who I am. I enjoy building momentum in every arena—
+        in the lab, in rehearsal, in the gym, and in the kitchen.
+      </p>
+      <p>
+        Satisfactory especially clicks with how I think as an engineer: systems planning, throughput optimization,
+        process layout, and iterative improvement all mirror the mindset I use in real-world technical work.
+      </p>
+    </section>
+
+    <section class="post span-2" id="future">
+      <h2>Where I’m Headed</h2>
+      <p>
+        I am building a career at the intersection of hands-on design, advanced analysis, and elite execution.
+        My goal is to keep growing as the kind of engineer who can model a system, build the prototype,
+        communicate the result, and perform when the stakes are high.
+      </p>
+      <p>
+        Long-term, I plan to pursue a master’s program in nuclear engineering with a focus on
+        computational reactor design. I want to apply rigorous simulation, thermal-fluid analysis,
+        and systems thinking to some of the most technically demanding energy challenges.
+      </p>
+    </section>
+    </section>
+
+    <footer>
+      Built with Python • Black / White / Red Theme • Personal Engineering Blog
+    </footer>
+    </div>
+
+    <aside class="side-col" id="photos">
+      <h3>Photo Highlights</h3>
+      <div class="photo-grid">
+      <figure class="photo-card">
+        <img src="images/IMG_4770.JPG" alt="IMG_4770.JPG" loading="lazy" style="object-fit: cover; object-position: 50% 10%;" />
+      </figure>
+
+      <figure class="photo-card">
+        <img src="images/IMG_5517.PNG" alt="IMG_5517.PNG" loading="lazy" style="object-fit: cover; object-position: 50% 30%;" />
+      </figure>
+
+      <figure class="photo-card">
+        <img src="images/IMG_6595.PNG" alt="IMG_6595.PNG" loading="lazy" style="object-fit: cover; object-position: 50% 35%;" />
+      </figure>
+
+      <figure class="photo-card">
+        <img src="images/IMG_7314.JPG" alt="IMG_7314.JPG" loading="lazy" style="object-fit: cover; object-position: 50% 28%;" />
+      </figure>
+
+      <figure class="photo-card">
+        <img src="images/IMG_7616%281%29.JPG" alt="IMG_7616(1).JPG" loading="lazy" style="object-fit: cover; object-position: 50% 30%;" />
+      </figure>
+
+      <figure class="photo-card">
+        <img src="images/IMG_7712%281%29.PNG" alt="IMG_7712(1).PNG" loading="lazy" style="object-fit: contain; object-position: 50% 24%;" />
+      </figure></div>
+    </aside>
+    </div>
+  </main>
+</body>
+</html>
