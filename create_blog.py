@@ -4,6 +4,7 @@ import shlex
 import subprocess
 import webbrowser
 import html
+from datetime import datetime, timezone
 from urllib.parse import quote
 
 
@@ -58,12 +59,15 @@ def build_photo_cards(image_paths: list[Path]) -> str:
 def build_blog_html() -> str:
   image_paths = get_image_paths()
   side_gallery = build_photo_cards(image_paths)
+  last_updated = datetime.now(timezone.utc).strftime("%b %d, %Y")
 
   html_template = """<!DOCTYPE html>
 <html lang=\"en\">
 <head>
   <meta charset=\"UTF-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
+  <meta name=\"description\" content=\"Personal engineering blog of Chayse Comer featuring research, design work, and performance discipline.\" />
+  <meta name=\"theme-color\" content=\"#0b0b0d\" />
   <title>Chayse Comer | Engineering, Music, and Momentum</title>
   <style>
     :root {
@@ -89,6 +93,12 @@ def build_blog_html() -> str:
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     .site-header {
@@ -113,6 +123,7 @@ def build_blog_html() -> str:
       margin: 0.55rem 0 1rem;
       color: var(--muted);
       font-size: 1rem;
+      max-width: 70ch;
     }
 
     .top-nav {
@@ -135,6 +146,13 @@ def build_blog_html() -> str:
     .top-nav a:hover {
       border-color: var(--accent-soft);
       background: #24171a;
+    }
+
+    .top-nav a:focus-visible,
+    a:focus-visible {
+      outline: 2px solid #ff8f94;
+      outline-offset: 2px;
+      border-radius: 8px;
     }
 
     .container {
@@ -233,6 +251,11 @@ def build_blog_html() -> str:
       padding: 1.5rem;
       margin-bottom: 1rem;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.26);
+      transition: border-color 0.18s ease;
+    }
+
+    .post:hover {
+      border-color: #4a4f5c;
     }
 
     h1, h2 {
@@ -256,6 +279,10 @@ def build_blog_html() -> str:
     .subtitle {
       color: var(--muted);
       margin-top: 0;
+    }
+
+    p {
+      max-width: 78ch;
     }
 
     .tagline {
@@ -292,6 +319,15 @@ def build_blog_html() -> str:
       gap: 1rem;
     }
 
+    #about,
+    #research,
+    #phantom,
+    #relationship,
+    #hobbies,
+    #future {
+      scroll-margin-top: 1rem;
+    }
+
     .span-2 {
       grid-column: span 2;
     }
@@ -301,6 +337,11 @@ def build_blog_html() -> str:
       color: var(--muted);
       font-size: 0.9rem;
       padding: 0.5rem 0 1rem;
+    }
+
+    .footer-meta {
+      margin-top: 0.3rem;
+      font-size: 0.82rem;
     }
 
     a {
@@ -324,6 +365,10 @@ def build_blog_html() -> str:
 
       .photo-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .container {
+        margin: 1.4rem auto 2rem;
       }
     }
 
@@ -479,6 +524,7 @@ def build_blog_html() -> str:
 
     <footer>
       Built with Python • Black / White / Red Theme • Personal Engineering Blog
+      <div class="footer-meta">Last updated: __LAST_UPDATED__ (UTC)</div>
     </footer>
     </div>
 
@@ -491,7 +537,7 @@ def build_blog_html() -> str:
 </body>
 </html>
 """
-  return html_template.replace("__SIDE_GALLERY__", side_gallery)
+  return html_template.replace("__SIDE_GALLERY__", side_gallery).replace("__LAST_UPDATED__", last_updated)
 
 
 def open_blog_in_browser(file_path: Path) -> bool:

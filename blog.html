@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal engineering blog of Chayse Comer featuring research, design work, and performance discipline." />
+  <meta name="theme-color" content="#0b0b0d" />
   <title>Chayse Comer | Engineering, Music, and Momentum</title>
   <style>
     :root {
@@ -28,6 +30,12 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     .site-header {
@@ -52,6 +60,7 @@
       margin: 0.55rem 0 1rem;
       color: var(--muted);
       font-size: 1rem;
+      max-width: 70ch;
     }
 
     .top-nav {
@@ -74,6 +83,13 @@
     .top-nav a:hover {
       border-color: var(--accent-soft);
       background: #24171a;
+    }
+
+    .top-nav a:focus-visible,
+    a:focus-visible {
+      outline: 2px solid #ff8f94;
+      outline-offset: 2px;
+      border-radius: 8px;
     }
 
     .container {
@@ -172,6 +188,11 @@
       padding: 1.5rem;
       margin-bottom: 1rem;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.26);
+      transition: border-color 0.18s ease;
+    }
+
+    .post:hover {
+      border-color: #4a4f5c;
     }
 
     h1, h2 {
@@ -195,6 +216,10 @@
     .subtitle {
       color: var(--muted);
       margin-top: 0;
+    }
+
+    p {
+      max-width: 78ch;
     }
 
     .tagline {
@@ -231,6 +256,15 @@
       gap: 1rem;
     }
 
+    #about,
+    #research,
+    #phantom,
+    #relationship,
+    #hobbies,
+    #future {
+      scroll-margin-top: 1rem;
+    }
+
     .span-2 {
       grid-column: span 2;
     }
@@ -240,6 +274,11 @@
       color: var(--muted);
       font-size: 0.9rem;
       padding: 0.5rem 0 1rem;
+    }
+
+    .footer-meta {
+      margin-top: 0.3rem;
+      font-size: 0.82rem;
     }
 
     a {
@@ -263,6 +302,10 @@
 
       .photo-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .container {
+        margin: 1.4rem auto 2rem;
       }
     }
 
@@ -418,6 +461,7 @@
 
     <footer>
       Built with Python • Black / White / Red Theme • Personal Engineering Blog
+      <div class="footer-meta">Last updated: Feb 25, 2026 (UTC)</div>
     </footer>
     </div>
 
